@@ -2,7 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flock : MonoBehaviour
+
+/// <summary>
+/// For multiple flocks the flock memeber storage will need to be different
+/// Want easy removal and addition of singular elements 
+/// Maybe every flock has an array of the size equal to the total birds?
+///     - Little memory inefficient
+/// Linked list doesnt handle removal well enough
+///     - Inserting is easy though
+///     - Could just have a var track which flock the bird is a part of 
+/// </summary>
+public class FlockManager : MonoBehaviour
 {
 
     private Bird[] flock;
@@ -35,7 +45,10 @@ public class Flock : MonoBehaviour
 
     public void SeekCenter()
     {
-
+        for(int i = 0; i < flockSize; i++)
+        {
+            flock[i].Seek(flockCenter);
+        }
     }
 
     public void HandleBirdDeath(Bird hitBird)
