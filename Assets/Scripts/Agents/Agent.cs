@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
-    //TODO
-    //maybe make friction more real world based
-    //PUBLIC ELEMENTS SHOULD BE PRIVATE WITH GETTERS AND SETTERS
-    //Need to rework movement and acceleration to allow for airstrafing
 
     [SerializeField] protected Vector3 acceleration;
     [SerializeField] protected Vector3 velocity;
@@ -58,7 +54,7 @@ public class Agent : MonoBehaviour
         Vector3 desiredVel = target - transform.position;
         desiredVel = desiredVel.normalized;
 
-        return desiredVel*maxAcceleration;
+        return desiredVel;
     }
 
     public Vector3 Flee(Vector3 target)
