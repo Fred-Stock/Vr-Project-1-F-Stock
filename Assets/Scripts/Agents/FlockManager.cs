@@ -22,25 +22,38 @@ public class FlockManager : MonoBehaviour
     private float centerWeight;
 
     private bool followPath; //might be changed to enum
-    public GameObject[] centerPath;
+    public GameObject[] flockPath;
     private int pathIndex;
     public GameObject currentNode;
     private float sqrMoveNodeRadius;
     private float pathWeight;
+    private float wanderWeight;
+    private float sqrSeperationRadius;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        flockSize = 9;
         fleeWeight = 6f;
+        pathWeight = 20f;
         centerWeight = 2f;
-        flockCenter = FindFlockCenter();
-        pathIndex = 0;
-        sqrMoveNodeRadius = 1;
+        wanderWeight = 5f;
 
-        currentNode = centerPath[0];
+        flockCenter = FindFlockCenter();
+
+        pathIndex = 0;
+        sqrMoveNodeRadius = 4000;
+
+        sqrSeperationRadius = 1f * 1f; // wrote as a multiplication as it is easier to interpret the seperation distance
+
+        //TEMP SOLUTION
+        flockPath = new GameObject[4];
+        flockPath[0] = GameObject.Find("Node0");
+        flockPath[1] = GameObject.Find("Node1");
+        flockPath[2] = GameObject.Find("Node2");
+        flockPath[3] = GameObject.Find("Node3");
+
+        currentNode = flockPath[0];
         followPath = true;
-        pathWeight = 4f;
+
     }
 
     // Update is called once per frame
@@ -63,29 +76,23 @@ public class FlockManager : MonoBehaviour
         return positionSum / flockSize;
     }
 
+    /// <summary>
+    /// Moves all birds in the flock towards the center of the flock
+    /// </summary>
     public void SeekCenter()
     {
         for(int i = 0; i < flockSize; i++)
         {
-            flock[i].rigidBody.AddForce(flock[i].Seek(flockCenter) * centerWeight, ForceMode.Acceleration);
+            flock[i].agentRigidBody.AddForce(flock[i].Seek(flockCenter) * centerWeight, ForceMode.Acceleration);
         }
     }
 
+    /// <summary>
+    /// Ensures there is a force keeping the birds apart from each other in the flock so they do not bundle together
+    /// </summary>
     public void KeepDistance()
     {
-        for(int i = 0; i < flockSize; i++)
-        {
-            for(int j = 0; j < flockSize; j++)
-            {
-                if(i != j)
-                {
-                    if((flock[i].transform.position - flock[j].transform.position).sqrMagnitude < 2.5*2.5)
-                    {
-                        flock[i].rigidBody.AddForce(flock[i].Flee(flock[j].transform.position) * fleeWeight, ForceMode.Acceleration);
-                    }
-                }
-            }
-        }
+
     }
 
     public void MoveAlongPath()
@@ -94,17 +101,24 @@ public class FlockManager : MonoBehaviour
         {
             if((currentNode.transform.position - flockCenter).sqrMagnitude <= sqrMoveNodeRadius)
             {
-                if(pathIndex >= centerPath.Length-1) pathIndex = 0; 
+                if(pathIndex >= flockPath.Length-1) pathIndex = 0; 
                 else pathIndex++;
 
-                currentNode = centerPath[pathIndex];
+                currentNode = flockPath[pathIndex];
             }
             for (int i = 0; i < flockSize; i++)
             {
-                flock[i].rigidBody.AddForce(flock[i].Seek(currentNode.transform.position)*pathWeight, ForceMode.Acceleration);
+                flock[i].agentRigidBody.AddForce(flock[i].Seek(currentNode.transform.position)*pathWeight, ForceMode.Acceleration);
+                flock[i].agentRigidBody.AddForce(flock[i].Wander() * wanderWeight, ForceMode.Acceleration);
             }
         }
 
+    }
+
+    public void SetFlock(Bird[] flock)
+    {
+        this.flock = flock;
+        flockSize = flock.Length;
     }
 
     public void HandleBirdDeath(Bird hitBird)
@@ -114,4 +128,6 @@ public class FlockManager : MonoBehaviour
         //2. Swap the index of the gameobject with the last active bird in the flock
         //3. decrement flockSize by one
     }
+
+
 }

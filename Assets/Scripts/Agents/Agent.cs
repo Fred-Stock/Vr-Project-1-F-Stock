@@ -8,8 +8,15 @@ public class Agent : MonoBehaviour
     [SerializeField] protected Vector3 acceleration;
     [SerializeField] protected Vector3 velocity;
     [SerializeField] protected float maxAcceleration;
-    protected Vector3 heading;
     [SerializeField] protected Collider hitBox;
+
+    [SerializeField] protected float wanderTimer;
+    [SerializeField] protected float wanderInterval;
+    [SerializeField] protected float wanderRadius;
+    [SerializeField] protected float wanderDist;
+    [SerializeField] protected Vector3 wanderVector;
+
+    public Rigidbody agentRigidBody;
 
     public float gravity = 5.0f;
 
@@ -29,25 +36,6 @@ public class Agent : MonoBehaviour
 
     }
 
-    //public void ApplyForce(Vector3 force)
-    //{
-    //    acceleration.x += force.x / mass;
-    //    acceleration.y += force.y / mass;
-    //    acceleration.z += force.z / mass;
-
-    //}
-
-    //public void Move()
-    //{
-    //    velocity += acceleration;
-
-    //    acceleration = Vector3.zero;
-    //    Vector3.ClampMagnitude(velocity, maxSpeed);
-    //    gameObject.transform.position += velocity * Time.deltaTime;
-    //    heading = transform.forward;
-
-    //}
-
     public Vector3 Seek(Vector3 target)
     {
 
@@ -62,4 +50,24 @@ public class Agent : MonoBehaviour
         return -Seek(target);
     }
 
+    public Vector3 Wander()
+    {
+        wanderTimer += Time.deltaTime;
+
+        if (wanderTimer >= wanderInterval)
+        {
+
+            double curAngle = Mathf.Atan2(agentRigidBody.velocity.x - transform.position.x, agentRigidBody.velocity.z - transform.position.z);
+            curAngle += Random.Range(60f * Mathf.Deg2Rad, 120 * Mathf.Deg2Rad);
+
+            wanderVector = new Vector3(Mathf.Cos((float)curAngle), agentRigidBody.velocity.y + Random.Range(-1, 1), agentRigidBody.velocity.z + Mathf.Sin((float)curAngle)).normalized;
+
+            wanderVector *= wanderRadius;
+
+            wanderTimer -= wanderInterval;
+
+        }
+
+        return Seek(wanderVector + transform.position + transform.forward*wanderDist);
+    }
 }

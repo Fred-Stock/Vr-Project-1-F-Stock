@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5158511950769587468}
   - component: {fileID: 5158511950769587464}
   - component: {fileID: 5158511950769587465}
+  - component: {fileID: 8931490691198069816}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -113,10 +114,16 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxAcceleration: 10
   hitBox: {fileID: 5158511950769587468}
+  wanderTimer: 0.75
+  wanderInterval: 0
+  wanderRadius: 2
+  wanderDist: 10
+  wanderVector: {x: 0, y: 0, z: 0}
+  agentRigidBody: {fileID: 0}
   gravity: 0
   maxSpeed: 10
   mass: 2
-  rigidBody: {fileID: 0}
+  seperatingSphere: {fileID: 0}
 --- !u!54 &5158511950769587465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,3 +140,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &8931490691198069816
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5158511950769587507}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
