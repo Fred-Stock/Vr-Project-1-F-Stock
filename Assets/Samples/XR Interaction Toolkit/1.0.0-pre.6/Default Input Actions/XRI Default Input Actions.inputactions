@@ -154,6 +154,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "RotateBallista",
+                    "type": "Value",
+                    "id": "6f2b2df2-d483-41a5-a96b-ff0ec27a1c9c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -475,6 +483,17 @@
                     "action": "Translate Anchor",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "5be75994-3bd7-4ba6-b5dd-eb9b5f2b9f6b",
+                    "path": "<XRController>{LeftHand}/thumbstick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateBallista",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -582,6 +601,14 @@
                     "name": "Translate Anchor",
                     "type": "Value",
                     "id": "6f7cf253-7062-443b-b10f-2be48a33f027",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RotateBallista",
+                    "type": "Value",
+                    "id": "ef77eede-3a08-4b3d-b8d7-f7a877a8f655",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -895,6 +922,17 @@
                     "action": "Translate Anchor",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a220cc46-90a7-4f46-913a-3a71f78cdd68",
+                    "path": "<XRController>{RightHand}/thumbstick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateBallista",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

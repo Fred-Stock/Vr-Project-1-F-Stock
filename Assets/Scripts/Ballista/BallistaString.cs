@@ -43,11 +43,6 @@ public class BallistaString : MonoBehaviour
         {
             currentGrabVec = (initialGrabPos - currentHand.transform.position);
 
-
-            ballistaBase.transform.localEulerAngles += currentGrabVec.y * transform.up * Time.deltaTime * ballistaRotationSpeed;
-            
-            currentGrabVec = new Vector3(currentGrabVec.x, 0, currentGrabVec.z); //remove the y component of the controller movement as that was used for rotation of ballista
-      
             currentGrabVec = Vector3.ClampMagnitude(currentGrabVec, maxDrawDist);
             curBolt.transform.position = transform.position + (.5f - (currentGrabVec.sqrMagnitude / sqrMaxDrawDist)) * transform.forward;
             curBolt.transform.rotation = transform.rotation;
