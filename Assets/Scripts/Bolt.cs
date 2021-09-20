@@ -7,9 +7,11 @@ public class Bolt : MonoBehaviour
 
     [SerializeField] private float lifeTime;
     [SerializeField] private float timeAlive;
+    public bool inAir;
 
     public void Update()
     {
+        if(!inAir) { return; }
         timeAlive += Time.deltaTime;
 
         if(timeAlive > lifeTime)
@@ -20,7 +22,7 @@ public class Bolt : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log(gameObject.name);
+        inAir = false;
         GameObject.Find("GameManager").GetComponent<GameData>().PushBolt(gameObject);
     }
 

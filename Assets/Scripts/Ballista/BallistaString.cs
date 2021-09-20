@@ -77,6 +77,7 @@ public class BallistaString : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = true;
         //GetComponent<CapsuleCollider>().enabled = true;
         curBolt.GetComponent<Rigidbody>().useGravity = true;
+        curBolt.GetComponent<Bolt>().inAir = true;
         holdingString = false;
     }
 

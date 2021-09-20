@@ -25,14 +25,16 @@ public class BallistaControlRight : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (controls.XRIRightHand.RotateBallista.ReadValue<Vector2>().y > 0)
-        {
-            ballistaTop.transform.Rotate(new Vector3(1, 0, 0) * rotationSpeed * Time.deltaTime);
-        }
-        if (controls.XRIRightHand.RotateBallista.ReadValue<Vector2>().y < 0)
-        {
-            ballistaTop.transform.Rotate(new Vector3(-1, 0, 0) * rotationSpeed * Time.deltaTime);
-        }
+        ballistaTop.transform.Rotate(controls.XRIRightHand.RotateBallista.ReadValue<Vector2>().y * new Vector3(1, 0, 0) * rotationSpeed * Time.deltaTime);
+
+        //if (controls.XRIRightHand.RotateBallista.ReadValue<Vector2>().y > 0)
+        //{
+        //    ballistaTop.transform.Rotate(new Vector3(1, 0, 0) * rotationSpeed * Time.deltaTime);
+        //}
+        //if (controls.XRIRightHand.RotateBallista.ReadValue<Vector2>().y < 0)
+        //{
+        //    ballistaTop.transform.Rotate(new Vector3(-1, 0, 0) * rotationSpeed * Time.deltaTime);
+        //}
 
     }
 }

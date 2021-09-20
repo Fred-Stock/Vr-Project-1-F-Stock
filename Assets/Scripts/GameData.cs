@@ -7,6 +7,10 @@ public class GameData : MonoBehaviour
 
     private Queue<GameObject> bolts;
 
+    public void Awake()
+    {
+        bolts = new Queue<GameObject>();
+    }
 
     public void PushBolt(GameObject newBolt)
     {
