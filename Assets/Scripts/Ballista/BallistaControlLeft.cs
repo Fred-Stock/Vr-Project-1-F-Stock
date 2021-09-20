@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+//maybe make the ballista controlled by hands
+//first drag string to load bolt and select power
+//second grab trigger and activate to shoot
+
 public class BallistaControlLeft : MonoBehaviour
 {
 
