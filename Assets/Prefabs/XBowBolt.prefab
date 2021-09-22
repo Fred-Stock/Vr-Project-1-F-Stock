@@ -92,8 +92,9 @@ GameObject:
   - component: {fileID: 2458186476867751206}
   - component: {fileID: -8727257819279665216}
   - component: {fileID: 551882244786190947}
+  - component: {fileID: 2323893797177982897}
   m_Layer: 9
-  m_Name: Bolt
+  m_Name: XBowBolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 2642006156731267724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.5, z: 0.2}
   m_Children:
   - {fileID: 8877247452044678651}
   - {fileID: 1905951895576745844}
@@ -128,12 +129,12 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 0.05
   m_Drag: 0
-  m_AngularDrag: 0.2
+  m_AngularDrag: 0.5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &551882244786190947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,8 +147,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 915a03f64fd109742829e5cccc93a3ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 1
+  lifeTime: 3
   timeAlive: 0
+  shootForce: 0
+  inAir: 0
+--- !u!65 &2323893797177982897
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2642006156731267724}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.05080308, y: 0.049811367, z: 0.9978128}
+  m_Center: {x: 0.0027660187, y: -0.0014290828, z: -0.0010942295}
 --- !u!1 &4251323641876354828
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +337,6 @@ GameObject:
   - component: {fileID: 8877247452044678651}
   - component: {fileID: 5624709686816823925}
   - component: {fileID: 6214284137650972622}
-  - component: {fileID: 2841098591701422967}
   m_Layer: 9
   m_Name: Shaft
   m_TagString: Untagged
@@ -370,7 +385,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b6f79a5bdd996044998909fc8c99627a, type: 2}
+  - {fileID: 2100000, guid: b72d2de31f68ab94e96dfbf39afa03f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -392,19 +407,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2841098591701422967
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6293636502018074033}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8083132461794831993
 GameObject:
   m_ObjectHideFlags: 0
