@@ -33,7 +33,7 @@ public class Trigger : MonoBehaviour
         curBolt.GetComponent<Rigidbody>().AddForce(curBolt.GetComponent<Bolt>().shootForce * curBolt.transform.forward, ForceMode.Force);
         curBolt.GetComponent<Rigidbody>().useGravity = true;
         curBolt.GetComponent<Bolt>().inAir = true;
-        curBolt.transform.SetParent(curBolt.transform);
+        curBolt.transform.SetParent(null);
 
         // Makes the crossbow string visible and grabable again
         crossbowString.GetComponent<MeshRenderer>().enabled = true;
